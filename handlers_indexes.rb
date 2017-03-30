@@ -50,6 +50,9 @@ module Scraper
 
       def handle_link(a, section_list)
         url = standardize_url(a[:href], toc_url)
+        if url == "https://www.gwern.net/In%20Defense%20of%20Inclusionism"
+          url = "https://www.gwern.net/In%20Defense%20Of%20Inclusionism"
+        end
         yield({url: url, name: a.text.strip, data: get_page_data(url), sections: section_list})
       end
 
