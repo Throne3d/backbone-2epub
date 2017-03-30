@@ -38,9 +38,14 @@ module Scraper
         data = page[:data]
         data = Nokogiri::HTML(data) if data.is_a?(String)
 
+        main = data.at_css('main')
         parsed_data = {}
-        parsed_data[:meta] = data.at_css('#metadata').inner_html
-        parsed_data[:body] = data.at_css('#markdownBody').inner_html
+        if main
+          parsed_data[:meta] = main.at_css('#metadata').try(:inner_html)
+          parsed_data[:body] = main.at_css('#markdownBody').try(:inner_html)
+        else
+          parsed_data[:body] = page[:data]
+        end
 
         LOG.info "Parsed: #{page[:name]}"
         parsed_data
