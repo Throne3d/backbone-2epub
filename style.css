@@ -1,0 +1,17 @@
+@namespace epub "http://www.idpf.org/2007/ops";
+h1.entry-title {
+  border-bottom: solid 1px #aaa;
+  padding-bottom: 5px;
+}
+body {
+  font-family: sans-serif;
+}
+.content {
+  padding-top: 5px;
+  page-break-before: avoid;
+}
+.content p:first-child { margin-top: 0; }
+.content p:last-child { margin-bottom: 0; }
+.timestamp {
+  font-size: 80%;
+}

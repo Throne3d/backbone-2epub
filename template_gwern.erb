@@ -1,0 +1,16 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" /><link rel="stylesheet" href="../style/default.css" type="text/css" />
+    <title><%= h(@page[:name]) %></title>
+  </head>
+  <body>
+    <h1 class="entry-title"><%= h(@page[:name]) %></h1>
+    <div class="metadata">
+      <%= @parsed_data[:meta] %>
+    </div>
+    <div class="content">
+      <%= @parsed_data[:body] %>
+    </div>
+  </body>
+</html>

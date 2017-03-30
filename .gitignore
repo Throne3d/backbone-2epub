@@ -1,0 +1,3 @@
+# Don't check in logs or output
+logs/
+output/
