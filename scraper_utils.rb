@@ -149,6 +149,8 @@
     url = url.sub('./', '') if url.start_with?('./')
     (LOG.error "cannot handle ../ in standardize_url (#{url})"; return url) if url.start_with?('../')
 
+    url = url.split('#').first # strip fragment
+
     # URL is relative file, remove last part from path & append
     from_uri.path = from_uri.path.sub(from_uri.path.split('/').last, '') + url
     from_uri.to_s
