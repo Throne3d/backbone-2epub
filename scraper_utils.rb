@@ -147,7 +147,11 @@
     end
 
     url = url.sub('./', '') if url.start_with?('./')
-    (LOG.error "cannot handle ../ in standardize_url (#{url})"; return url) if url.start_with?('../')
+    while url.start_with?('../')
+      (LOG.error "from_url has no more folders to go up through; failed url: #{url}"; return url) if from_uri.path == '/' || !from_uri.path['/']
+      from_uri.path = from_uri.path.split('/')[0..-2] * '/'
+      url = url.sub('../', '')
+    end
 
     url = url.split('#').first # strip fragment
 
